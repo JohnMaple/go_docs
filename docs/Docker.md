@@ -71,7 +71,7 @@
 
 环境：CentOS 7.3 64位
 
-项目：https://gitlab.dianchu.cc/DevOpsGroup/GoWebStartKit
+项目：
 
 ### 安装Docker
 
