@@ -71,7 +71,7 @@
 
 环境：CentOS 7.3 64位
 
-项目：
+项目：https://gitlab.goohub.cc/DevOpsGroup/GoWebStartKit
 
 ### 安装Docker
 
@@ -119,7 +119,7 @@ sudo systemctl restart docker
 
 #### 创建Dockerfile
 ```
-FROM hub.dianchu.cc/library/gotool:latest  # 基于gotool
+FROM hub.goohub.cc/library/gotool:latest  # 基于gotool
 WORKDIR $GOPATH/src/maester-go/  # 设置工作目录
 EXPOSE 9090 # 声明开放端口 只是声明并没有改变什么
 COPY ./maester-go/ ./ # 复制Dockerfile同级目录下的项目文件夹 到容器的工作目录中
@@ -127,7 +127,7 @@ RUN govendor build # build Go项目
 CMD ["./GoWebStartKit"] # 容器启动执行的命令
 ```
 
-gotool镜像的Dockerfile：https://gitlab.dianchu.cc/docker-library/gotool/blob/master/Dockerfile
+gotool镜像的Dockerfile：https://gitlab.goohub.cc/docker-library/gotool/blob/master/Dockerfile
 
 #### 使用Dockerfile build 镜像
 ```
@@ -139,7 +139,7 @@ docker build -t 名字:版本号 .（点代表当前目录下的Dockerfile）
 ```
 docker build -t goweb:latest .
 Sending build context to Docker daemon 8.655 MB
-Step 1 : FROM hub.dianchu.cc/library/gotool:latest
+Step 1 : FROM hub.goohub.cc/library/gotool:latest
  ---> df2f964fcd66
 Step 2 : WORKDIR $GOPATH/src/maester-go/
  ---> Running in c3807e9c4fef
@@ -173,12 +173,12 @@ Docker images
 [root@localhost test]# docker images
 REPOSITORY                                                   TAG                 IMAGE ID            CREATED             SIZE
 goweb   ←刚刚构建的镜像                                         latest              17015b6ff70e        10 minutes ago      540 MB
-hub.dianchu.cc/library/gotool                                latest              df2f964fcd66        40 hours ago        510.4 MB
-hub.dianchu.cc/library/fluentd-pilot-test                    0.2                 943d603a0052        10 days ago         89.63 MB
-hub.dianchu.cc/library/fluentd-pilot                         latest              943d603a0052        10 days ago         89.63 MB
+hub.goohub.cc/library/gotool                                latest              df2f964fcd66        40 hours ago        510.4 MB
+hub.goohub.cc/library/fluentd-pilot-test                    0.2                 943d603a0052        10 days ago         89.63 MB
+hub.goohub.cc/library/fluentd-pilot                         latest              943d603a0052        10 days ago         89.63 MB
 registry.cn-shenzhen.aliyuncs.com/xflxfl/fluentd-pilot       0.2                 943d603a0052        10 days ago         89.63 MB
-hub.dianchu.cc/library/fluentd-pilot                         <none>              b1c2a06567f6        10 days ago         89.63 MB
-hub.dianchu.cc/library/pilot                                 1.5.3               eb5134b879f2        11 days ago         91.35 MB
+hub.goohub.cc/library/fluentd-pilot                         <none>              b1c2a06567f6        10 days ago         89.63 MB
+hub.goohub.cc/library/pilot                                 1.5.3               eb5134b879f2        11 days ago         91.35 MB
 .....
 ```
 
@@ -238,7 +238,7 @@ PID   USER     TIME   COMMAND
 
 ```
 ### 上传镜像
-hub.dianchu.cc 是内网的镜像仓库
+hub.goohub.cc 是内网的镜像仓库
 
 账号：admin
 
@@ -246,7 +246,7 @@ hub.dianchu.cc 是内网的镜像仓库
 
 #### 为要上传的镜像打上标签
 ```
-docker tag goweb:latest hub.dianchu.cc/library/gotestweb:latest
+docker tag goweb:latest hub.goohub.cc/library/gotestweb:latest
 ```
 ```
 docker tag 要上传的镜像 仓库地址/项目地址/镜像名:版本号
@@ -254,17 +254,17 @@ docker tag 要上传的镜像 仓库地址/项目地址/镜像名:版本号
 
 #### 登录内网仓库
 ```
-docker login hub.dianchu.cc
+docker login hub.goohub.cc
 ```
 ```
-[root@localhost docker]# docker login hub.dianchu.cc
+[root@localhost docker]# docker login hub.goohub.cc
 Username (admin): admin
 Password:
 Login Succeeded
 ```
 #### 上传镜像
 ```
-docker push hub.dianchu.cc/library/gotestweb:latest
+docker push hub.goohub.cc/library/gotestweb:latest
 ```
 
 ### 删除镜像、删除所有已关闭的容器
@@ -280,8 +280,8 @@ docker rm -v $(docker ps -aq)
 
 ### 日志收集
 
-方法一: https://gitlab.dianchu.cc/go_chaos/system_log/log_output
-方法二：https://gitlab.dianchu.cc/docker-library/fluentd-pilot-json
+方法一: https://gitlab.goohub.cc/go_chaos/system_log/log_output
+方法二：https://gitlab.goohub.cc/docker-library/fluentd-pilot-json
 
 当前项目的方案是把日志标准输出到控制台，由fluentd-pilot收集：
 
